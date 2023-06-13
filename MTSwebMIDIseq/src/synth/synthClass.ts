@@ -12,7 +12,7 @@ class Synth {
       this.inited = true;
   }
 
-  generateNoteTable(baseFreq:number, numOfIntervals:number){
+  generateEDOnoteTable(baseFreq:number, numOfIntervals:number){
     let lowestOctave:number = baseFreq;
     let highestOctave:number = baseFreq;
     let threshold: number = 0;
@@ -31,13 +31,18 @@ class Synth {
       octaveBank.push(valueBuffer);
       cont++;
     }
-    for(let octave = 0; octave < octaveBank[cont-1].octave; octave++) {
+    for(let octave = 0; octave < octaveBank[cont-2].octave; octave++) {
       for(let interval = 0; interval < numOfIntervals; interval++) {
-        let frequency = Math.pow()
-        let valueBuffer: FreqbankInterface = {freq:}
-        noteBank
+        let frequency = octaveBank[octave].freq * Math.pow(2, interval/numOfIntervals)
+        let valueBuffer: FreqbankInterface = {freq:frequency, octave: octave}
+        noteBank.push(valueBuffer);
       }
     }
+    return noteBank;
+  }
+
+  
+    
   }
 
   constructor(){

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SynthClassService } from '../synth/synth-class.service';
 
 @Component({
   selector: 'app-keyboard',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./keyboard.component.scss']
 })
 export class KeyboardComponent {
+  constructor(SynthService: SynthClassService){
 
+  }
+  getNotes(){
+    return
+  }
 }

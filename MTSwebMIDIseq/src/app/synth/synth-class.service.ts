@@ -15,11 +15,13 @@ export class SynthClassService implements OnInit {
       this.inited = true;
   }
 
+  //see those red lines? i fucked up...
   generateEDOnoteTable(baseFreq:number, numOfIntervals:number){
     let lowestOctave:number = baseFreq;
     let highestOctave:number = baseFreq;
     let threshold: number = 0;
-    let cont: number = 0;
+    let octCont: number = 0;
+    let idCont: number = 0;
     let octaveBank: FreqbankInterface[] = [];
     let noteBank: FreqbankInterface[] = [];
     while(lowestOctave >= 20) {
@@ -30,7 +32,7 @@ export class SynthClassService implements OnInit {
       highestOctave *= 2;
     }
     while(threshold <= 22000) {
-      let valueBuffer: FreqbankInterface = {freq: threshold, octave: cont}
+      let valueBuffer: FreqbankInterface = {freq: threshold, octave: octCont}
       octaveBank.push(valueBuffer);
       cont++;
     }

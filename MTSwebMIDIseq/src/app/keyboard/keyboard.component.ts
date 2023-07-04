@@ -23,9 +23,10 @@ export class KeyboardComponent implements OnInit {
       this.notes = this.synthService.noteTable;
   }
 
+  //make the set of notes of the appear on the screen
+
   setCurrentOctave(octave:number): FreqbankInterface[] {
     this.currentOctave = octave;
-
     let offset: number | undefined;
     let octaveBuffer: FreqbankInterface[] = []
     for(let i = 0; i<this.notes.length; i++) {
@@ -35,10 +36,24 @@ export class KeyboardComponent implements OnInit {
           offset = i;
       }
     }
-
     if(offset !== undefined)
       this.nOffset = offset;
-
     return octaveBuffer;
   }
+
+  //change the scale notes || maybe use arrow function here?????
+  changeNoteTable(baseFreq: number, numOfIntervals: number) {
+    this.synthService.generateEDOnoteTable(baseFreq, numOfIntervals);
+    this.getNotes;
+    this.currentNotes = this.setCurrentOctave(7);
+  }
+
+  noteOn(note: FreqbankInterface){
+
+
+  }
+
+
+
+
 }

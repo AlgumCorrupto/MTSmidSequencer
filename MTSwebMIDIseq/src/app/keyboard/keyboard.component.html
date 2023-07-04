@@ -1,10 +1,8 @@
 <!-- I have no idea how to work with angular template binding sintax :DDDDDDDDDDD -->
-
 <div>
   <!-- Maps all of the note variables of the TS code the html document and when user clicks on it, it sends an event to the the keyboard.ts -->
   <button *ngFor="let note of currentNotes ; let i=index;" [ngClass]="{'key' : true}" [attr.attribute ] (click)="noteOn(note)">
-
+    {{note.freq}}
   </button>
-
 </div>
 

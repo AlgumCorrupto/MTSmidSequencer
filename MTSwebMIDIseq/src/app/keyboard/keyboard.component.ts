@@ -15,8 +15,10 @@ export class KeyboardComponent implements OnInit {
   constructor(private synthService: SynthClassService){ }
 
   ngOnInit(): void {
+    this.synthService.start();
     this.getNotes()
     this.currentNotes = this.setCurrentOctave(7);
+    console.log("keyboard iniciou")
   }
 
   getNotes(){

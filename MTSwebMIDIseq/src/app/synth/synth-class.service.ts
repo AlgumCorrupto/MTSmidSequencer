@@ -1,19 +1,14 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { FreqbankInterface } from './FreqbankInterface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SynthClassService implements OnInit {
+export class SynthClassService{
   audioContext = new window.AudioContext()
   oscList = [];
   masterGainMode = null;
   noteTable: FreqbankInterface[] = [];
-  inited: boolean = false;
-  init() {
-    if (!this.inited)
-      this.inited = true;
-  }
 
   //see those red lines? i fucked up...
   //no more red lines, mom!!!
@@ -27,15 +22,16 @@ export class SynthClassService implements OnInit {
     let noteBank: FreqbankInterface[] = [];
 
     //find lowest note
-    while(lowestNoteFreq >= 20) {
+    do{
       lowestNoteFreq /= 2;
-    }
+    }while(lowestNoteFreq >= 20)
     threshold = lowestNoteFreq;
 
     //find highest note
-    while(highestNoteFreq >= 22000) {
+    do {
       highestNoteFreq *= 2;
-    }
+    }while(highestNoteFreq <= 5500)
+    console.log(highestNoteFreq);
 
     //fill octBank with values of the frequencies of the octave.
     while(threshold <= highestNoteFreq) {
@@ -55,11 +51,13 @@ export class SynthClassService implements OnInit {
         idCont++;
       }
     }
+    console.log(noteBank.length)
     return noteBank;
   }
 
-  ngOnInit(){
+  start(){
     this.noteTable = this.generateEDOnoteTable(440, 12);
+    console.log("synth iniciou!!")
   }
 
   constructor() {

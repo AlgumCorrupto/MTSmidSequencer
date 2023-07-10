@@ -1,17 +1,22 @@
 import { Injectable} from '@angular/core';
+import * as Tone from 'tone'
 import { FreqbankInterface } from './FreqbankInterface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SynthClassService{
-  audioContext = new window.AudioContext()
-  oscList = [];
-  masterGainMode = null;
+  //audioContext = new window.AudioContext()
+  //oscList = [];
+  //masterGainMode: any = null;
+  //mainGainNode: GainNode|undefined = undefined ;
+
+  synth = new Tone.PolySynth().toDestination()
+
+
+
   noteTable: FreqbankInterface[] = [];
 
-  //see those red lines? i fucked up...
-  //no more red lines, mom!!!
   generateEDOnoteTable(baseFreq:number, numOfIntervals:number){
     let lowestNoteFreq:number = baseFreq;
     let highestNoteFreq:number = baseFreq;
@@ -20,6 +25,9 @@ export class SynthClassService{
     let idCont: number = 0;
     let octaveBank: FreqbankInterface[] = [];
     let noteBank: FreqbankInterface[] = [];
+
+    console.log(numOfIntervals)
+
 
     //find lowest note
     do{
@@ -58,6 +66,18 @@ export class SynthClassService{
   start(){
     this.noteTable = this.generateEDOnoteTable(440, 12);
     console.log("synth iniciou!!")
+  }
+
+  updateNoteTable(baseFreq: number, EDOsteps: number) {
+    this.noteTable = this.generateEDOnoteTable(baseFreq, EDOsteps);
+  }
+
+  playNote(note: FreqbankInterface) {
+    this.synth.triggerAttack(note.freq, Tone.now())
+  }
+
+  releaseNote(note: FreqbankInterface) {
+    this.synth.triggerRelease(note.freq, Tone.now());
   }
 
   constructor() {

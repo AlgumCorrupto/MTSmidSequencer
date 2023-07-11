@@ -12,9 +12,6 @@ export class SynthClassService{
   //mainGainNode: GainNode|undefined = undefined ;
 
   synth = new Tone.PolySynth().toDestination()
-
-
-
   noteTable: FreqbankInterface[] = [];
 
   generateEDOnoteTable(baseFreq:number, numOfIntervals:number){

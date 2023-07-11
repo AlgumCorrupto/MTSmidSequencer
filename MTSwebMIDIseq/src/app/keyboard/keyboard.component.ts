@@ -51,9 +51,10 @@ export class KeyboardComponent implements OnInit {
   }
 
   //change the scale
-  changeNoteTable(baseFreq: number, numOfIntervals: number) {
+  changeNoteTable(baseFreq: number, numOfIntervals: number, octave: number) {
     this.synthService.updateNoteTable(baseFreq, numOfIntervals);
     this.getNotes();
+    this.currentNotes = this.setCurrentOctave(octave);
   }
 
   noteOn(note: FreqbankInterface){
@@ -75,7 +76,7 @@ export class KeyboardComponent implements OnInit {
   }
 
   onClickSubmit(data: NgForm) {
-    this.changeNoteTable(440, this.currentEDO)
+    this.changeNoteTable(440, this.currentEDO, this.currentOctave)
     console.log(this.currentEDO)
   }
 

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SynthClassService } from '../synth/synth-class.service';
-import { FreqbankInterface } from '../synth/FreqbankInterface';
 import { NgForm } from '@angular/forms';
+
+import { SynthClassService } from '../synth/synth-class.service';
+
+import { FreqbankInterface } from '../synth/FreqbankInterface';
+import { SequencerMapInterface } from '../synth/sequencerMapInterface';
+
 
 
 @Component({
@@ -16,6 +20,8 @@ export class KeyboardComponent implements OnInit {
   nOffset: number = 0;
   currentPlayingNotes: number[] = [];
   currentEDO: number = 0;
+  sequencerMap: SequencerMapInterface[][] =  [];
+
 
   constructor(private synthService: SynthClassService,
               ){ }
@@ -79,6 +85,12 @@ export class KeyboardComponent implements OnInit {
     this.changeNoteTable(440, this.currentEDO, this.currentOctave)
     console.log(this.currentEDO)
   }
+
+  //Ex. use table currentNotes and build 4 bars of 4/4
+  buildSequencerMap(noteTable: FreqbankInterface, numBars: number, dividend: number, divisor: number) {
+
+  }
+
 
 
 }

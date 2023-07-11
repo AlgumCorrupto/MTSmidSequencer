@@ -1,6 +1,6 @@
 <h1><b>That Microtonal Sequencer Project</b></h1>
 <h2>Introduction: </h2>
-<p>Hello and welcome, this is my very first real "big" project, the plan is to have at least to the end of the year have a basic keyboard note sequencer that you can select various types scales and tunings to play with.</p>
+<p>Hello and welcome, this is my very first real "big" project, the plan is to have at least to the end of the year a basic keyboard note sequencer that you can select various types scales and tunings to play with.</p>
 <h2>Core features: </h2>
 <p></p>
 <ul>

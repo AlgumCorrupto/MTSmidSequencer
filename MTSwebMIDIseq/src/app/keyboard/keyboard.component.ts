@@ -75,7 +75,9 @@ export class KeyboardComponent implements OnInit {
   }
 
   noteOff(note: FreqbankInterface) {
+
     console.log("Released note %d, Frequency: %d, octave: %d", note.id, note.freq, note.octave);
+
     this.synthService.releaseNote(note);
     let toRemove: number = this.currentPlayingNotes.indexOf(note.freq)
     this.currentPlayingNotes.splice(toRemove, 1);
@@ -86,11 +88,39 @@ export class KeyboardComponent implements OnInit {
     console.log(this.currentEDO)
   }
 
-  //Ex. use table currentNotes and build 4 bars of 4/4
-  buildSequencerMap(noteTable: FreqbankInterface, numBars: number, dividend: number, divisor: number) {
+  nLengthTranslator(nSubdiv: number):number {
 
+    let validator: number = nSubdiv;
+    let offsTo16ths: number = 0;
+
+    if(validator =  16)
+      return offsTo16ths;
+    do{
+      validator *= 2;
+    }while(validator <= 16)
+
+    return offsTo16ths;
+  }
+
+
+
+  //Ex. use a note and build N measures of qtdBeats/beatDuration
+  buildnSequencerMap(note: FreqbankInterface,numBars: number, dividend: number, divisor: number) {
+    let nValidator = Math.log2(divisor);
+    if(divisor < 32 && !Number.isInteger( nValidator))
+      return;
+    let offsTo16ths: number = this.nLengthTranslator(divisor);
+    let nTickMap: SequencerMapInterface[] = [];
+    let nTickNeedle: number = 0;
+
+    for(let j = 0; j < numBars; j++)
+      for(let k = 0; k < dividend; j++)
+        for(let l = 0; l < offsTo16ths; l++) {
+          nTickMap.push()
+        }
   }
 
 
 
 }
+
